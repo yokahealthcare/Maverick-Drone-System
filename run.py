@@ -6,9 +6,12 @@ import cowsay
 
 console = Console()
 
-import fly_square
+import square
 import fly_circle
-#import landing
+import hexagonal
+import takeoff_hover_land
+import landing
+import takeoff
 
 from pyfiglet import Figlet
 custom_fig = Figlet(font='chunky')
@@ -16,8 +19,11 @@ console.print(custom_fig.renderText('MAVERICK'), style="bold red")
 console.print("DRONE SYSTEM - Created by CPS Drone Team")
 
 menus = [
-    'Fly Square',
-    'Fly Circle',
+    'Square',
+    'Circle',
+    'Hexagonal',
+    'Take Off & Land',
+    'Takeoff',
     'Land',
     'Exit'        
 ]
@@ -29,15 +35,27 @@ while running:
     
     u = int(input(">>>>  "))
     if u == 1:
-        fly_square.run()
+        square.run()
+        
     elif u == 2:
         fly_circle.run()
+        
     elif u == 3:
-        print("UNDER DEVELOPMENT....")
-        #landing.run()
+        hexagonal.run()
+    
+    elif u == 4:
+        takeoff_hover_land.run()
+        
+    elif u == 5:
+        takeoff.run()
+    
+    elif u == 6:
+        landing.run()
+        
     elif u == len(menus):
         cowsay.cow("BYE BYE moooo....")
         running = False
+        
     else:
         print("Invalid Input - System Cannot Understand!!")
     

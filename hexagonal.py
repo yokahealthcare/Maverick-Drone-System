@@ -20,13 +20,29 @@ def main():
 
     # Create local reference frame.
     drone.initialize_local_frame()
-    
-    # Landing
-    drone.land()
-    
+    # Set GUIDED mode
+    drone.set_mode("GUIDED")
+    # Request takeoff with an altitude of 3m.
+    drone.takeoff(3)
     # Specify control loop rate. We recommend a low frequency to not over load the FCU with messages. Too many messages will cause the drone to be sluggish.
     rate = rospy.Rate(3)
-    
+
+    # Specify some waypoints
+    goals = [[0, 0, 3, 0], [5, 0, 3, -90], [2, 3, 3, 45],
+             [-2, 3, 3, 90], [-5, 0, 3, 135], [-2, -3, 3, -135], 
+             [2, -3, 3, -90], [5, 0, 3, -45], [0, 0, 3, 90], [0, 0, 3, 0]]
+    i = 0
+
+    while i < len(goals):
+        drone.set_destination(x=goals[i][0], y=goals[i][1], z=goals[i][2], psi=goals[i][3])
+        rate.sleep()
+        if drone.check_waypoint_reached():
+            i += 1
+    # Land after all waypoints is reached.
+    drone.land()
+    rospy.loginfo(CGREEN2 + "All waypoints reached landing now." + CEND)
+
+
 def run():
     try:
         main()

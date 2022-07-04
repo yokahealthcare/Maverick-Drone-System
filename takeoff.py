@@ -21,8 +21,9 @@ def main():
     # Create local reference frame.
     drone.initialize_local_frame()
     
-    # Landing
-    drone.land()
+    # Takeoff
+    altitude = input("Altitude : ")
+    drone.takeoff(altitude)
     
     # Specify control loop rate. We recommend a low frequency to not over load the FCU with messages. Too many messages will cause the drone to be sluggish.
     rate = rospy.Rate(3)
