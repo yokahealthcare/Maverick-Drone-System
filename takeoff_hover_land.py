@@ -10,7 +10,7 @@ from mavros_msgs.srv import CommandTOL
 import time
 
 def run():
-    rospy.init_node('mavros_takeoff_python', anonymous=True)
+    rospy.init_node('drone_controller', anonymous=True)
     rate = rospy.Rate(10)
     
     # Set Mode

@@ -23,14 +23,12 @@ def main():
 
     # Create local reference frame.
     drone.initialize_local_frame()
-    # Request takeoff with an altitude of 3m.
-    drone.takeoff(3)
+
     # Specify control loop rate. We recommend a low frequency to not over load the FCU with messages. Too many messages will cause the drone to be sluggish.
     rate = rospy.Rate(3)
 
     # Specify some waypoints
-    goals = [[0, 0, 3, 0], [5, 0, 3, -90], [5, 5, 3, 0],
-             [0, 5, 3, 90], [0, 0, 3, 180], [0, 0, 3, 0]]
+    goals = [[0, 0, 3, 0]]
     i = 0
 
     while i < len(goals):

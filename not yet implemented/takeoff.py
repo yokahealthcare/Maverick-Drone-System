@@ -10,6 +10,9 @@ from iq_gnc.PrintColours import *
 def main():
     # Initializing ROS node.
     rospy.init_node("drone_controller", anonymous=True)
+    
+    # Asking for altitude value
+    altitude = float(input("Set The Altitude : "))
 
     # Create an object for the API.
     drone = gnc_api()
@@ -20,15 +23,16 @@ def main():
 
     # Create local reference frame.
     drone.initialize_local_frame()
+    # Set GUIDED mode
+    drone.set_mode("GUIDED")
     
     # Takeoff
-    altitude = input("Altitude : ")
     drone.takeoff(altitude)
     
     # Specify control loop rate. We recommend a low frequency to not over load the FCU with messages. Too many messages will cause the drone to be sluggish.
     rate = rospy.Rate(3)
     
-def run():
+if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:
