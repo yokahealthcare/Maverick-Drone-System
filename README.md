@@ -12,4 +12,7 @@ CPS DRONE Sampoerna University Team
 4. open ./QGroundControl.AppImage
 
 ## Run Python Code
-1. ```cd maverick/ && python3 run.py```
+1. ```cd Desktop/maverick/ && python3 run.py```
+
+# Explanation
+Codes are written using iq_gnc.py_gnc_functions library 
